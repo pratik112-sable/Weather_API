@@ -4,16 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Weather Conditions</title>
+    <title>Weather, wherever you are</title>
     <link href="{{ url_for('static', filename='style/style.css') }}" rel="stylesheet" />
 </head>
 
 <body>
-    <h1>Get Weather Conditions</h1>
-    <form action="/weather">
-        <input type="text" name="city" id="city" placeholder="Enter a City" />
-        <button type="submit">Submit</button>
-    </form>
+    <main class="page-shell">
+        <header class="topbar">
+            <a class="brand" href="/" aria-label="Weather home">
+                <span class="brand-mark" aria-hidden="true">W</span>
+                <span>weather<span class="brand-dot">.</span></span>
+            </a>
+            <span class="topbar-note">A little clarity for your day</span>
+        </header>
+
+        <section class="welcome-layout" aria-labelledby="welcome-title">
+            <div class="welcome-copy">
+                <p class="eyebrow"><span class="eyebrow-line"></span> YOUR DAY, IN THE CLEAR</p>
+                <h1 id="welcome-title">Welcome to<br />weather<span class="heading-dot">.</span></h1>
+                <p class="intro">Find the feeling of any city, before you step outside.</p>
+
+                <form class="search-form" action="/weather" method="get">
+                    <label for="city">Explore a city</label>
+                    <div class="search-control">
+                        <span class="location-icon" aria-hidden="true">⌖</span>
+                        <input type="text" name="city" id="city" placeholder="e.g. Lisbon, Tokyo, Nairobi" required minlength="2" autocomplete="address-level2" />
+                        <button type="submit" aria-label="Search weather">
+                            <span>Find weather</span>
+                            <span aria-hidden="true">&#8594;</span>
+                        </button>
+                    </div>
+                </form>
+                <p class="search-hint">Try a city anywhere in the world</p>
+            </div>
+
+            <aside class="sky-panel" aria-label="A view of a bright, cloudy sky">
+                <img src="https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=1200&q=85" alt="Soft sunlight breaking through clouds" />
+                <div class="sky-caption">
+                    <span class="sky-caption-dot"></span>
+                    <span>Somewhere, the sun is coming out.</span>
+                </div>
+                <span class="sky-index">01 / EVERYWHERE</span>
+            </aside>
+        </section>
+
+        <footer class="page-footer">
+            <span>Weather for wherever life takes you.</span>
+            <span class="footer-mark">LOOK UP <span aria-hidden="true">&#8599;</span></span>
+        </footer>
+    </main>
 </body>
 
 </html>

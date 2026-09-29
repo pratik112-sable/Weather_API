@@ -4,19 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} Weather</title>
+    <title>{{ title }} weather today</title>
     <link href="{{ url_for('static', filename='style/style.css') }}" rel="stylesheet" />
 </head>
 
 <body>
-    <h1>{{ title }} Weather</h1>
-    <p>{{ status }} and {{ temp }} &deg;</p>
-    <p>Feels like {{ feels_like }} &deg;</p>
+    <main class="page-shell">
+        <header class="topbar">
+            <a class="brand" href="/" aria-label="Weather home">
+                <span class="brand-mark" aria-hidden="true">W</span>
+                <span>weather<span class="brand-dot">.</span></span>
+            </a>
+            <a class="back-link" href="/">&#8592; <span>New search</span></a>
+        </header>
 
-    <form action="/weather">
-        <input type="text" name="city" id="city" placeholder="Enter a City" />
-        <button type="submit">Submit</button>
-    </form>
+        <section class="weather-layout" aria-labelledby="weather-title">
+            <div class="weather-copy">
+                <p class="eyebrow"><span class="eyebrow-line"></span> RIGHT NOW</p>
+                <h1 id="weather-title">{{ title }}<span class="heading-dot">.</span></h1>
+                <p class="weather-status">{{ status }}</p>
+                <div class="temperature-row">
+                    <span class="temperature">{{ temp }}<span class="degree">&deg;</span></span>
+                    <div class="temperature-detail">
+                        <span>FEELS LIKE</span>
+                        <strong>{{ feels_like }}&deg;</strong>
+                    </div>
+                </div>
+                <form class="search-form compact-search" action="/weather" method="get">
+                    <label for="city">Check another city</label>
+                    <div class="search-control">
+                        <span class="location-icon" aria-hidden="true">⌖</span>
+                        <input type="text" name="city" id="city" value="{{ query }}" placeholder="Search a city" required minlength="2" autocomplete="address-level2" />
+                        <button type="submit" aria-label="Search weather">
+                            <span>Search</span>
+                            <span aria-hidden="true">&#8594;</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <aside class="weather-art" aria-hidden="true">
+                <img src="https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=1200&q=85" alt="" />
+                <span class="weather-art-label">THE WEATHER<br />IS ALWAYS MOVING</span>
+            </aside>
+        </section>
+
+        <footer class="page-footer">
+            <span>Weather for wherever life takes you.</span>
+            <span class="footer-mark">{{ title|upper }} <span aria-hidden="true">&#8599;</span></span>
+        </footer>
+    </main>
 </body>
 
 </html>
